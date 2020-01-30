@@ -6,13 +6,14 @@ module.exports = function (app) {
 
 	// alert Routes
 	app.route('/alert')
-		.get(alert.getAllAlerts);
+		.get(alert.getAll)
+		.post(alert.create);
 
-	app.route('/alert/created-id/:createdId')
-		.get(alert.getUserAlerts);
+	app.route('/alert/user/id/:id')
+		.get(alert.getByUserId);
 		//.put(alert.UpdateAlert)
 
-	app.route('/alert/alert-id/:alertId')
-		.get(alert.getAlert)
-		.delete(alert.deleteAlert);
+	app.route('/alert/id/:id')
+		.get(alert.getById)
+		.delete(alert.remove);
 };

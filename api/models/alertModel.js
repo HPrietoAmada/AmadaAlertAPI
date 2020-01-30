@@ -1,9 +1,9 @@
 'user strict';
 
-var sql = require('./database.js');
+var mysql = require('./mysql.js');
 
 //Alert object constructor
-var Alert = function(alert) {
+var Alert = function (alert) {
 	this.id = alert.id;
 	this.notification 	= alert.notification;
 	this.send_type 		= alert.send_type;
@@ -18,13 +18,13 @@ var Alert = function(alert) {
 	this.created_date 	= alert.created_date;
 	this.updated_id 	= alert.updated_id;
 	this.updated_date 	= alert.updated_date;	
-}
+};
 
-Alert.getAlert = function (alertId, result) {
-	sql.query(
-		"SELECT * FROM alert WHERE id = ?",
-		alertId,
-		function (err, res) {
+Alert.getById = function (id, result) {
+	mysql.query(
+		"SELECT * FROM alert WHERE id = ?"
+		,id
+		,function (err, res) {
 			if (err) {
 				result(err, null);
 			} else {
@@ -33,8 +33,8 @@ Alert.getAlert = function (alertId, result) {
 		});
 };
 
-Alert.getAllAlerts = function (result) {
-	sql.query(
+Alert.getAll = function (result) {
+	mysql.query(
 		"SELECT * FROM alert"
 		,function (err, res) {
 			if (err) {
@@ -45,32 +45,41 @@ Alert.getAllAlerts = function (result) {
 		});
 };
 
-Alert.getUserAlerts = function (createdId, result) {
-	sql.query(
+Alert.getByUserId = function (id, result) {
+	mysql.query(
 		"SELECT * FROM alert WHERE CREATED_ID = ?"
-		,createdId
+		,id
 		,function (err, res) {
 			if (err) {
-				console.log("getUserAlert error: " + err);
 				result(err, null);
 			} else {
-				console.log("getUserAlert res: ");
-				console.log(res);
 				result(null, res);
 			}
 		});
 };
 
-Alert.remove = function (alertId, result) {
-	sql.query(
+Alert.remove = function (id, result) {
+	mysql.query(
 		"DELETE * FROM alert WHERE ID = ?"
-		,alertId
+		,id
 		,function (err, res) {
 			if (err) {
 				result(err, null);
 			} else {
 				result(null, res);
 			}
+		});
+};
+
+Alert.create = function (model, result) {
+	mydql.query(
+		"INSERT INTO alert SET ?"
+		,model
+		,function (err, res) {
+			if (err)
+				result(err, null);
+			else
+				result(null, res);
 		});
 };
 

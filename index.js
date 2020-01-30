@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express'),
 	app = express(),
 	bodyParser = require('body-parser'),
-	connection = require('./api/models/database'),
+	connection = require('./api/models/mysql'),
 	port = process.env.PORT || 3000,
 	Alert = require('./api/models/alertModel');
 

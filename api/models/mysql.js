@@ -1,6 +1,6 @@
 'user strict';
 
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 /* Start of Production connection */
 
@@ -19,12 +19,15 @@ var mysql = require('mysql');
 /* End of Production connection */
 
 // local mysql db connection (development)
-var connection = mysql.createConnection({
-	host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASSWORD,
-	database: process.env.DB_DATABASE
-});
+let config = {
+	host: 		process.env.MYSQL_HOST,
+	user: 		process.env.MYSQL_USER,
+	password: 	process.env.MYSQL_PASSWORD,
+	database: 	process.env.MYSQL_DATABASE
+};
+
+let connection = mysql.createConnection(config);
+
 connection.connect(function (err) {
 	if (err) {
 		console.log('Error connection: ' + err.stack);
