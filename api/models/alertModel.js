@@ -3,21 +3,21 @@
 var mysql = require('./mysql.js');
 
 //Alert object constructor
-var Alert = function (alert) {
-	this.id = alert.id;
-	this.notification 	= alert.notification;
-	this.send_type 		= alert.send_type;
-	this.retry_group 	= alert.retry_group;
-	this.n_retries 		= alert.n_retries;
-	this.retry_delay 	= alert.retry_delay;
-	this.retry_count 	= alert.retry_count;
-	this.message 		= alert.message;
-	this.allow_response_change = alert.allow_response_change;
-	this.send_date 		= alert.send_date;
-	this.created_id 	= alert.created_id;
-	this.created_date 	= alert.created_date;
-	this.updated_id 	= alert.updated_id;
-	this.updated_date 	= alert.updated_date;	
+var Alert = function (object) {
+	this.id = object.id;
+	this.notification 	= object.notification;
+	this.send_type 		= object.send_type;
+	this.retry_group 	= object.retry_group;
+	this.n_retries 		= object.n_retries;
+	this.retry_delay 	= object.retry_delay;
+	this.retry_count 	= object.retry_count;
+	this.message 		= object.message;
+	this.allow_response_change = object.allow_response_change;
+	this.send_date 		= object.send_date;
+	this.created_id 	= object.created_id;
+	this.created_date 	= object.created_date;
+	this.updated_id 	= object.updated_id;
+	this.updated_date 	= object.updated_date;	
 };
 
 Alert.getById = function (id, result) {
@@ -72,7 +72,7 @@ Alert.remove = function (id, result) {
 };
 
 Alert.create = function (model, result) {
-	mydql.query(
+	mysql.query(
 		"INSERT INTO alert SET ?"
 		,model
 		,function (err, res) {
@@ -84,3 +84,15 @@ Alert.create = function (model, result) {
 };
 
 module.exports = Alert;
+
+/*
+
+INSERT INTO alert values (4, NULL, NULL, NULL, 5, 5, 5, 'I hope everything is ok', 0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
+INSERT INTO alert values (5, NULL, NULL, NULL, 5, 5, 5, 'East L.A. Blowout',       0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
+INSERT INTO alert values (6, NULL, NULL, NULL, 5, 5, 5, 'The roof is on fire',     0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
+INSERT INTO alert values (7, NULL, NULL, NULL, 5, 5, 5, 'The servers are back up', 0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
+INSERT INTO alert values (8, NULL, NULL, NULL, 5, 5, 5, 'WindMerge test text',     0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
+INSERT INTO alert values (9, NULL, NULL, NULL, 5, 5, 5, 'Everyone Run!!',          0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
+
+
+*/

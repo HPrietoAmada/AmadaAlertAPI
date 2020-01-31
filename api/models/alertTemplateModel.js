@@ -54,7 +54,7 @@ AlertTemplate.remove = function (id, result) {
 };
 
 AlertTemplate.create = function (model, result) {
-	mydql.query (
+	mysql.query (
 		"INSERT INTO alert_template SET ?"
 		,model
 		,function (err, res) {

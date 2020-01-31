@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Amada Alert API</title>
+	</head>
+	<body>
+		<h2>Create new alert</h2>
+		<form method="POST" action="/alert/create">
+			<div>
+				<input type="text" name="n_retries" placeholder="number of retries">
+			</div>
+			<div>
+				<input type="text" name="retry_delay" placeholder="retry delay">
+			</div>
+			<div>
+				<input type="text" name="retry_count" placeholder="number of retries">
+			</div>
+			<div>
+				<input type="text" name="message" placeholder="message">
+			</div>
+			<div>
+				<input type="number" name="allow_response_change" placeholder="allow response change">
+			</div>
+			<div>
+				<input type="datetime" name="send_date" placeholder="send date" value="2020-01-29T16:30">
+			</div>
+			<div>
+				<input type="number" name="created_id" placeholder="created id">
+			</div>
+			<div>
+				<input type="datetime" name="created_date" placeholder="created date" value="2020-01-31T16:30">
+			</div>
+			<div>
+				<input type="number" name="updated_id" placeholder="updated id">
+			</div>
+			<div>
+				<input type="datetime" name="updated_date" placeholder="updated date" value="2020-01-31T16:30">
+			</div>
+		</form>
+	</body>
+</html>
