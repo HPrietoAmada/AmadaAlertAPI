@@ -3,39 +3,46 @@
 var Alert = require('../models/alertModel.js');
 
 exports.getById = function (req, res) {
-	Alert.getById(req.params.id, function (err, alert) {
+	Alert.getById(req.params.id, function (err, data) {
 		if (err)
 			res.send(err);
-		res.send(alert);
+		res.send(data);
 	});
 };
 
 exports.getAll = function (req, res) {
-	Alert.getAll(function (err, alerts) {
+	Alert.getAll(function (err, data) {
 		if (err)
 			res.send(err);
-		res.send(alerts);
+		res.send(data);
 	});
 };
 
 exports.getByUserId = function (req, res) {
-	Alert.getByUserId(req.params.id, function (err, alerts) {
+	Alert.getByUserId(req.params.id, function (err, data) {
 		if (err) {
 			res.send(err);
 			return;
 		}
-		res.send(alerts);
+		res.send(data);
 	});
 };
 
-exports.remove = function (req, res) {
-	Alert.remove(req.params.id, function (err, alert) {
-		if (err) {
+exports.deleteById = function (req, res) {
+	Alert.deleteById(req.params.id, function (err, data) {
+		if (err)
 			res.send(err);
-		}
 		res.json({ message: 'Alert successfully deleted.' });
 	});
 };
+
+exports.deleteAll = function (req, res) {
+	Alert.deleteAll(function (err, data) {
+		if (err)
+			res.send(err);
+		res.json({ message: "Alerts deleted successfully." })
+	});
+}
 
 exports.create = function (req, res) {
 	var newAlert = new Alert(req.body);

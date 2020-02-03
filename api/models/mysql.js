@@ -2,31 +2,30 @@
 
 const mysql = require('mysql');
 
-/* Start of Production connection */
 
-// let config = {
-//     user: process.env.SQL_USER,
-//     database: process.env.SQL_DATABASE,
-//     password: process.env.SQL_PASSWORD,
-// }
+// GCP Production connection configuration
+let productionConfig = {
+    user: process.env.MYSQL_USER,
+    database: process.env.MYSQL_DATABASE,
+    password: process.env.MYSQL_PASSWORD,
+}
 
-// if (process.env.INSTANCE_CONNECTION_NAME && process.env.NODE_ENV === 'production') {
-//   config.socketPath = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
-// }
+if (process.env.MYSQL_INSTANCE_NAME && process.env.NODE_ENV === 'production') {
+  productionConfig.socketPath = `/cloudsql/${process.env.MYSQL_INSTANCE_NAME}`;
+}
 
-// let connection = mysql.createConnection(config);
+let connection = mysql.createConnection(productionConfig);
 
-/* End of Production connection */
 
-// local mysql db connection (development)
-let config = {
+/*
+// Development connection
+let connection = mysql.createConnection({
 	host: 		process.env.MYSQL_HOST,
 	user: 		process.env.MYSQL_USER,
 	password: 	process.env.MYSQL_PASSWORD,
 	database: 	process.env.MYSQL_DATABASE
-};
-
-let connection = mysql.createConnection(config);
+});
+*/
 
 connection.connect(function (err) {
 	if (err) {

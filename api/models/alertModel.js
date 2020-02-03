@@ -58,9 +58,9 @@ Alert.getByUserId = function (id, result) {
 		});
 };
 
-Alert.remove = function (id, result) {
+Alert.deleteById = function (id, result) {
 	mysql.query(
-		"DELETE * FROM alert WHERE ID = ?"
+		"DELETE FROM alert WHERE id = ?"
 		,id
 		,function (err, res) {
 			if (err) {
@@ -68,6 +68,17 @@ Alert.remove = function (id, result) {
 			} else {
 				result(null, res);
 			}
+		});
+};
+
+Alert.deleteAll = function (id, result) {
+	mysql.query(
+		"DELETE FROM alert WHERE id > 0"
+		,function (err, res) {
+			if (err)
+				result(err, null);
+			else
+				result(null, res);
 		});
 };
 

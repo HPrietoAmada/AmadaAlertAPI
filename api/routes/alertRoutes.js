@@ -14,6 +14,11 @@ module.exports = function (app) {
 		//.put(alert.UpdateAlert)
 
 	app.route('/alert/id/:id')
-		.get(alert.getById)
-		.delete(alert.remove);
+		.get(alert.getById);
+
+	app.route('/alert/delete')
+		.delete(alert.deleteAll);
+
+	app.route('/alert/delete/:id')
+		.delete(alert.deleteById);
 };

@@ -10,6 +10,9 @@ const express = require('express'),
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+var homeRoutes = require('./api/routes/homeRoutes');
+homeRoutes(app);
+
 var alertRoutes = require('./api/routes/alertRoutes');
 alertRoutes(app);
 
