@@ -6,7 +6,9 @@ var mysql = require('./mysql.js');
 var Alert = function (object) {
 	this.id = object.id;
 	this.notification 	= object.notification;
-	this.send_type 		= object.send_type;
+	this.by_email       = this.by_email;
+	this.by_text        = this.by_text;
+	this.by_push        = this.by_push;
 	this.retry_group 	= object.retry_group;
 	this.n_retries 		= object.n_retries;
 	this.retry_delay 	= object.retry_delay;
@@ -97,6 +99,25 @@ Alert.create = function (model, result) {
 module.exports = Alert;
 
 /*
+
+ALTER TABLE alert
+DROP send_type;
+
+ALTER TABLE alert
+  ADD text_notification tinyint(1) NOT NULL
+    AFTER notification_type;
+
+ALTER TABLE alert
+  ADD email_notication tinyint(1) NOT NULL
+    AFTER text_message;
+
+ALTER TABLE alert
+  ADD push_notification tinyint(1) NOT NULL
+    AFTER email_notification;
+
+ALTER TABLE alert
+  ADD text_message tinyint(1) NOT NULL
+    AFTER notification_type;
 
 INSERT INTO alert values (4, NULL, NULL, NULL, 5, 5, 5, 'I hope everything is ok', 0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
 INSERT INTO alert values (5, NULL, NULL, NULL, 5, 5, 5, 'East L.A. Blowout',       0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
