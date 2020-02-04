@@ -4,26 +4,32 @@ const mysql = require('mysql');
 
 
 // GCP Production connection configuration
-// let productionConfig = {
-//     user: process.env.MYSQL_USER,
-//     database: process.env.MYSQL_DATABASE,
-//     password: process.env.MYSQL_PASSWORD,
-// }
+var connection;
+if (process.env.DEPLOYED && process.env.DEPLOYED === "true") {
+	// production connection
+	let productionConfig = {
+    	user: process.env.MYSQL_USER,
+    	database: process.env.MYSQL_DATABASE,
+    	password: process.env.MYSQL_PASSWORD,
+	}
 
-// if (process.env.MYSQL_INSTANCE_NAME && process.env.NODE_ENV === 'production') {
-//   productionConfig.socketPath = `/cloudsql/${process.env.MYSQL_INSTANCE_NAME}`;
-// }
+	if (process.env.MYSQL_INSTANCE_NAME && process.env.NODE_ENV === 'production') {
+  		productionConfig.socketPath = `/cloudsql/${process.env.MYSQL_INSTANCE_NAME}`;
+	}
 
-// let connection = mysql.createConnection(productionConfig);
+	connection = mysql.createConnection(productionConfig);
+} else {
+	// Development connection
+	connection = mysql.createConnection({
+		host: 		process.env.MYSQL_HOST,
+		user: 		process.env.MYSQL_USER,
+		password: 	process.env.MYSQL_PASSWORD,
+		database: 	process.env.MYSQL_DATABASE
+	});
+}
 
 
 // Development connection
-let connection = mysql.createConnection({
-	host: 		process.env.MYSQL_HOST,
-	user: 		process.env.MYSQL_USER,
-	password: 	process.env.MYSQL_PASSWORD,
-	database: 	process.env.MYSQL_DATABASE
-});
 
 connection.connect(function (err) {
 	if (err) {
