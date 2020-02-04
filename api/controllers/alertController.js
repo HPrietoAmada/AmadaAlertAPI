@@ -18,8 +18,8 @@ exports.getAll = function (req, res) {
 	});
 };
 
-exports.getByUserId = function (req, res) {
-	Alert.getByUserId(req.params.id, function (err, data) {
+exports.getByCreatedId = function (req, res) {
+	Alert.getByCreatedId(req.params.id, function (err, data) {
 		if (err) {
 			res.send(err);
 			return;
@@ -46,6 +46,8 @@ exports.deleteAll = function (req, res) {
 
 exports.create = function (req, res) {
 	var newAlert = new Alert(req.body);
+	delete newAlert.id;
+	console.log(newAlert);
 
 	if (!newAlert || !newAlert.created_id) {
 		res.status(400).send({ error: true, message: 'Unable to authenticate user.' });
@@ -53,7 +55,9 @@ exports.create = function (req, res) {
 		Alert.create (newAlert, function (err, data) {
 			if (err)
 				res.send(err);
-			res.json(data);
+			var resObj = json(resObj);
+			var insertId = resObj.insertId;
+			res.send(data);
 		});
 	}
 }

@@ -5,10 +5,10 @@ var mysql = require('./mysql.js');
 //Alert object constructor
 var Alert = function (object) {
 	this.id = object.id;
-	this.notification 	= object.notification;
-	this.by_email       = this.by_email;
-	this.by_text        = this.by_text;
-	this.by_push        = this.by_push;
+	this.notification_type = object.notification_type;
+	this.by_email       = object.by_email;
+	this.by_text        = object.by_text;
+	this.by_push        = object.by_push;
 	this.retry_group 	= object.retry_group;
 	this.n_retries 		= object.n_retries;
 	this.retry_delay 	= object.retry_delay;
@@ -47,9 +47,9 @@ Alert.getAll = function (result) {
 		});
 };
 
-Alert.getByUserId = function (id, result) {
+Alert.getByCreatedId = function (id, result) {
 	mysql.query(
-		"SELECT * FROM alert WHERE CREATED_ID = ?"
+		"SELECT * FROM alert WHERE created_id = ?"
 		,id
 		,function (err, res) {
 			if (err) {

@@ -9,8 +9,8 @@ module.exports = function (app) {
 		.get(alert.getAll)
 		.post(alert.create);
 
-	app.route('/alert/user/id/:id')
-		.get(alert.getByUserId);
+	app.route('/alert/created-id/:id')
+		.get(alert.getByCreatedId);
 		//.put(alert.UpdateAlert)
 
 	app.route('/alert/id/:id')

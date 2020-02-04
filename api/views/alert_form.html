@@ -5,15 +5,24 @@
 	</head>
 	<body>
 		<h2>Create new alert</h2>
-		<form method="POST" action="/alert/create">
+		<form method="POST" action="/alert">
 			<div>
-				<input type="text" name="n_retries" placeholder="number of retries">
+				<input type="number" name="by_text" placeholder="send by text" value="1">
 			</div>
 			<div>
-				<input type="text" name="retry_delay" placeholder="retry delay">
+				<input type="number" name="by_email" placeholder="send by email" value="1">
 			</div>
 			<div>
-				<input type="text" name="retry_count" placeholder="number of retries">
+				<input type="number" name="by_push" placeholder="send by push" value="1">
+			</div>
+			<div>
+				<input type="number" name="n_retries" placeholder="number of retries" value="5">
+			</div>
+			<div>
+				<input type="number" name="retry_delay" placeholder="retry delay">
+			</div>
+			<div>
+				<input type="number" name="retry_count" placeholder="number of retries">
 			</div>
 			<div>
 				<input type="text" name="message" placeholder="message">
@@ -36,6 +45,7 @@
 			<div>
 				<input type="datetime" name="updated_date" placeholder="updated date" value="2020-01-31T16:30">
 			</div>
+			<input type="submit" value="Create">
 		</form>
 	</body>
 </html>

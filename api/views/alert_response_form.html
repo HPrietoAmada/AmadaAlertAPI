@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Amada Alert API</title>
+	</head>
+	<body>
+		<h2>Create new alert response</h2>
+		<form method="POST" action="/alert-response">
+			<div>
+				<input type="number" name="alert_id" placeholder="alert id">
+			</div>
+			<div>
+				<input type="text" name="response_desc" placeholder="response description">
+			</div>
+			<div>
+				<input type="number" name="sort_order" placeholder="sort order">
+			</div>
+			<div>
+				<input type="datetime" name="created_date" placeholder="created date">
+			</div>
+			<div>
+				<input type="number" name="created_id" placeholder="created id">
+			</div>
+			<div>
+				<input type="datetime" name="updated_date" placeholder="updated date">
+			</div>
+			<div>
+				<input type="number" name="updated_id" placeholder="updated id">
+			</div>
+			<input type="submit" value="Create">
+		</form>
+	</body>
+</html>
