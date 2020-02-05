@@ -6,12 +6,8 @@ Home.index = function (res) {
 	res(null, '<h1>Amada Alert API</h1>');
 };
 
-Home.alertForm = function (res) {
-	res(null, '/../views/alert_form.html');
-};
-
-Home.alertResponseForm = function (res) {
-	res(null, '/../views/alert_response_form.html');
+Home.form = function (fileName, res) {
+	res(null, '/../views/' + fileName);
 };
 
 module.exports = Home;

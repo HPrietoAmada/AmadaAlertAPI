@@ -20,7 +20,7 @@ var AlertTemplate = function (model) {
 	this.updated_date 		= model.updated_date;
 };
 
-AlertTemplate.getAlertTemplate = function (id, result) {
+AlertTemplate.getById = function (id, result) {
 	mysql.query (
 		"SELECT * FROM alert_template WHERE id = ?"
 		,id
@@ -32,7 +32,7 @@ AlertTemplate.getAlertTemplate = function (id, result) {
 		});
 };
 
-AlertTemplate.getAllAlertTemplates = function (result) {
+AlertTemplate.getAll = function (result) {
 	mysql.query(
 		"SELECT * FROM alert_template"
 		,function (err, res) {
@@ -67,4 +67,4 @@ AlertTemplate.create = function (model, result) {
 		});
 };
 
-model.exports = AlertTemplate;
+module.exports = AlertTemplate;

@@ -11,6 +11,6 @@ module.exports = function (app) {
 		.get(alertTemplate.getById)
 		.delete(alertTemplate.remove);
 
-	app.route('/alert-template/user/id/:id')
-		.get(alertTemplate.getByUserId);
-}
+	app.route('/alert-template/created-id/:id')
+		.get(alertTemplate.getByCreatedId);
+};

@@ -19,6 +19,9 @@ alertRoutes(app);
 var alertResponseRoutes = require('./api/routes/alertResponseRoutes');
 alertResponseRoutes(app);
 
+var alertTemplateRoutes = require('./api/routes/alertTemplateRoutes');
+alertTemplateRoutes(app);
+
 //bkettering 1156
 // app.route('/alert/:createdId')
 // 	.get(function (req, res, next) {

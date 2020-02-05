@@ -60,13 +60,26 @@ exports.deleteAll = function (req, res) {
 
 exports.create = function (req, res) {
 	var newAlertResponse = new AlertResponse(req.body);
-	if (!newAlertResponse || !newAlertResponse.response_desc) {
-		res.status(400).send({ error: true, message: 'Message body required.' });
-	} else {
-		AlertResponse.create(newAlert, function (err, data) {
-			if (err)
-				res.send(err);
-			res.json(data);
+
+	if (!newAlertResponse) {
+		res.status(400).send({
+			error: true,
+			message: 'Unable to create response at this time.'
 		});
+		return;
 	}
+
+	if (!newAlertResponse.response_desc || newAlertResponse.response_desc.length === 0) {
+		res.status(400).send({ 
+			error: true, 
+			message: 'Alert Response description is a required field.'
+		});
+		return;
+	}
+
+	AlertResponse.create(newAlertResponse, function (err, data) {
+		if (err)
+			res.send(err);
+		res.json(data);
+	});
 };

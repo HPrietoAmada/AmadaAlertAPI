@@ -50,14 +50,26 @@ exports.create = function (req, res) {
 	console.log(newAlert);
 
 	if (!newAlert || !newAlert.created_id) {
-		res.status(400).send({ error: true, message: 'Unable to authenticate user.' });
-	} else {
-		Alert.create (newAlert, function (err, data) {
-			if (err)
-				res.send(err);
-			var resObj = json(resObj);
-			var insertId = resObj.insertId;
-			res.send(data);
+		res.status(400).send({ 
+			error: true, 
+			message: 'Unable to authenticate user.' 
 		});
+		return;
 	}
+
+	if (!newAlert.message || newAlert.message.length === 0) {
+		res.status(400).send({
+			error: true,
+			message: 'Alert message is a required field.'
+		});
+		return;
+	}
+
+	Alert.create (newAlert, function (err, data) {
+		if (err)
+			res.send(err);
+		var resObj = json(resObj);
+		var insertId = resObj.insertId;
+		res.send(data);
+	});
 }

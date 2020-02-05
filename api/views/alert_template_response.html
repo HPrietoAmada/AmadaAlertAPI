@@ -4,28 +4,25 @@
 		<title>Amada Alert API</title>
 	</head>
 	<body>
-		<h2>Create new alert response</h2>
-		<form method="POST" action="/alert-response">
+		<h2>Create new alert template response</h2>
+		<form method="POST" action="/alert-template-response">
 			<div>
-				<input type="number" name="alert_id" placeholder="alert id">
+				<input type="number" name="template_alert_id" placeholder="template alert id">
 			</div>
 			<div>
 				<input type="text" name="response_desc" placeholder="response description">
 			</div>
 			<div>
-				<input type="number" name="sort_order" placeholder="sort order">
-			</div>
-			<div>
 				<input type="datetime" name="created_date" placeholder="created date" value="2020-02-05T16:30">
 			</div>
 			<div>
-				<input type="number" name="created_id" placeholder="created id">
+				<input type="number" name="created_id" placeholder="created id" value="1156">
 			</div>
 			<div>
 				<input type="datetime" name="updated_date" placeholder="updated date" value="2020-02-05T16:30">
 			</div>
 			<div>
-				<input type="number" name="updated_id" placeholder="updated id">
+				<input type="number" name="updated_id" placeholder="updated id" value="1156">
 			</div>
 			<input type="submit" value="Create">
 		</form>
