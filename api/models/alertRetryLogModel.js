@@ -23,6 +23,18 @@ AlertRetryLog.getById = function (id, result) {
 		});
 };
 
+AlertRetryLog.getByAlertId = function (id, result) {
+	mysql.query(
+		"SELECT * FROM alert_retry_log WHERE id = ?"
+		,id
+		,function (err, res) {
+			if (err)
+				result(err, null);
+			else
+				result(null, res);
+		});
+};
+
 AlertRetryLog.getAll = function (result) {
 	mysql.query(
 		"SELECT * FROM alert_retry_log"
@@ -77,6 +89,18 @@ AlertRetryLog.deleteById = function (id, result) {
 AlertRetryLog.deleteAll = function (id, result) {
 	mysql.query(
 		"DELETE FROM alert_retry_log WHERE id > 0"
+		,function (err, res) {
+			if (err)
+				result(err, null);
+			else
+				result(null, res);
+		});
+};
+
+AlertRetryLog.deleteByAlertId = function (id, result) {
+	mysql.query(
+		"DELETE FROM alert_retry_log WHERE alert_id = ?"
+		,id
 		,function (err, res) {
 			if (err)
 				result(err, null);

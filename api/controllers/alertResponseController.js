@@ -60,6 +60,9 @@ exports.deleteAll = function (req, res) {
 
 exports.create = function (req, res) {
 	var newAlertResponse = new AlertResponse(req.body);
+	delete newAlertResponse.id;
+	console.log('alert_response:');
+	console.log(newAlertResponse);
 
 	if (!newAlertResponse) {
 		res.status(400).send({
@@ -68,6 +71,14 @@ exports.create = function (req, res) {
 		});
 		return;
 	}
+
+	if(!newAlertResponse.alert_id) {
+		res.status(400).send({
+			error: true,
+			message: 'Alert response identification is a required field.'
+		});
+		return;
+	};
 
 	if (!newAlertResponse.response_desc || newAlertResponse.response_desc.length === 0) {
 		res.status(400).send({ 

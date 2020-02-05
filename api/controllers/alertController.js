@@ -47,6 +47,7 @@ exports.deleteAll = function (req, res) {
 exports.create = function (req, res) {
 	var newAlert = new Alert(req.body);
 	delete newAlert.id;
+	console.log('alert:');
 	console.log(newAlert);
 
 	if (!newAlert || !newAlert.created_id) {

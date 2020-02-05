@@ -7,7 +7,7 @@ Home.index = function (res) {
 };
 
 Home.form = function (fileName, res) {
-	res(null, '/../views/' + fileName);
+	res(null, '/../views/forms/' + fileName);
 };
 
 module.exports = Home;

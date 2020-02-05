@@ -6,6 +6,7 @@ var AlertTemplateResponse = function (object) {
 	this.id 				= object.id;
 	this.template_alert_id 	= object.template_alert_id;
 	this.response_desc 		= object.response_desc;
+	this.sort_order         = object.sort_order;
 	this.status 			= object.status;
 	this.created_date 		= object.created_date;
 	this.created_id 		= object.created_id;
