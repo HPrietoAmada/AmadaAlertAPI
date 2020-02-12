@@ -24,7 +24,7 @@ var Alert = function (object) {
 
 Alert.getById = function (id, result) {
 	mysql.query(
-		"SELECT * FROM alert WHERE id = ?"
+		"SELECT * FROM alert WHERE id = ? ORDER BY created_date"
 		,id
 		,function (err, res) {
 			if (err) {
@@ -37,7 +37,7 @@ Alert.getById = function (id, result) {
 
 Alert.getAll = function (result) {
 	mysql.query(
-		"SELECT * FROM alert"
+		"SELECT * FROM alert ORDER BY created_date"
 		,function (err, res) {
 			if (err) {
 				result(err, null);
@@ -49,7 +49,7 @@ Alert.getAll = function (result) {
 
 Alert.getByCreatedId = function (id, result) {
 	mysql.query(
-		"SELECT * FROM alert WHERE created_id = ?"
+		"SELECT * FROM alert WHERE created_id = ? ORDER BY created_date"
 		,id
 		,function (err, res) {
 			if (err) {
