@@ -94,3 +94,38 @@ exports.create = function (req, res) {
 		res.json(data);
 	});
 };
+
+exports.createList = function (req, res) {
+	var alertResponseList = req.body;
+	var promise = new Promise((resolve, reject) => {
+		var newAlertResponseIdList = [];
+		alertResponseList.forEach((alertResponseBody, index) => {
+			var alertResponse = new AlertResponse(alertResponseBody);
+			console.log("Looping");
+			delete alertResponse.id;
+			if (!alertResponse) {
+				return;
+			}	
+			if(!alertResponse.alert_id) {
+				return;
+			};	
+			if (!alertResponse.response_desc || alertResponse.response_desc.length === 0) {
+				return;
+			}
+			AlertResponse.create(alertResponse, function (err, data) {
+				if (!err)
+					newAlertResponseIdList.push(data);
+				if (index == alertResponseList.length - 1)
+					resolve(newAlertResponseIdList);
+			});
+		});
+	});
+
+	promise.then((result) => {
+		res.json(result);
+	});
+
+	promise.catch((error) => {
+		res.send(error);
+	});
+};

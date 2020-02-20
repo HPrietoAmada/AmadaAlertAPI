@@ -37,7 +37,7 @@ Alert.getById = function (id, result) {
 
 Alert.getAll = function (result) {
 	mysql.query(
-		"SELECT * FROM alert ORDER BY created_date"
+		"SELECT * FROM alert ORDER BY created_date DESC;"
 		,function (err, res) {
 			if (err) {
 				result(err, null);
@@ -49,7 +49,7 @@ Alert.getAll = function (result) {
 
 Alert.getByCreatedId = function (id, result) {
 	mysql.query(
-		"SELECT * FROM alert WHERE created_id = ? ORDER BY created_date"
+		"SELECT * FROM alert WHERE created_id = ? ORDER BY created_date DESC;"
 		,id
 		,function (err, res) {
 			if (err) {
@@ -125,6 +125,19 @@ INSERT INTO alert values (6, NULL, NULL, NULL, 5, 5, 5, 'The roof is on fire',  
 INSERT INTO alert values (7, NULL, NULL, NULL, 5, 5, 5, 'The servers are back up', 0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
 INSERT INTO alert values (8, NULL, NULL, NULL, 5, 5, 5, 'WindMerge test text',     0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
 INSERT INTO alert values (9, NULL, NULL, NULL, 5, 5, 5, 'Everyone Run!!',          0, SYSDATE(), 1156, SYSDATE(), 1156, SYSDATE()) 
+
+
+username  eenriquez password Ee!NB7nbw4@
+
+username  eenriquez attributes
+
+ vpn-group-policy LOCAL_VPN_GROUP_POLICY
+
+ password-storage disable
+
+ service-type remote-access
+
+exit
 
 
 */

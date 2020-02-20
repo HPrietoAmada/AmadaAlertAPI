@@ -69,8 +69,6 @@ exports.create = function (req, res) {
 	Alert.create (newAlert, function (err, data) {
 		if (err)
 			res.send(err);
-		var resObj = json(resObj);
-		var insertId = resObj.insertId;
 		res.send(data);
 	});
 }

@@ -8,6 +8,9 @@ module.exports = function (app) {
 		.post(alertResponse.create)
 		.delete(alertResponse.deleteAll);
 
+	app.route('/alert-response/list')
+		.post(alertResponse.createList);
+
 	app.route('/alert-response/id/:id')
 		.get(alertResponse.getById)
 		.delete(alertResponse.deleteById);
