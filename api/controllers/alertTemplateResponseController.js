@@ -94,3 +94,37 @@ exports.create = function (req, res) {
 		res.json(data);
 	});
 };
+
+exports.createList = function (req, res) {
+	var alertTemplateResponseList = req.body;
+	var promise = new Promise((resolve, reject) => {
+		var newAlertTemplateResponseIdList = [];
+		alertTemplateResponseList.forEach((alertTemplateResponseBody, index) => {
+			var alertTemplateResponse = new AlertTemplateResponse(alertTemplateResponseBody);
+			delete alertTemplateResponse.id;
+			if (!alertTemplateResponse) {
+				return;
+			}	
+			if(!alertTemplateResponse.template_alert_id) {
+				return;
+			};	
+			if (!alertTemplateResponse.response_desc || alertTemplateResponse.response_desc.length === 0) {
+				return;
+			}
+			AlertTemplateResponse.create(alertTemplateResponse, function (err, data) {
+				if (!err)
+					newAlertTemplateResponseIdList.push(data);
+				if (index == alertTemplateResponseList.length - 1)
+					resolve(newAlertTemplateResponseIdList);
+			});
+		});
+	});
+
+	promise.then((result) => {
+		res.json(result);
+	});
+
+	promise.catch((error) => {
+		res.send(error);
+	});
+};

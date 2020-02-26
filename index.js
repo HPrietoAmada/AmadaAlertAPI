@@ -22,7 +22,7 @@ var alertTemplateRoutes = require('./api/routes/alertTemplateRoutes');
 alertTemplateRoutes(app);
 
 var alertTemplateResponseRoutes = require('./api/routes/alertTemplateResponseRoutes');
-alertTemplateRoutes(app);
+alertTemplateResponseRoutes(app);
 
 var alertRetryLogRoutes = require('./api/routes/alertRetryLogRoutes');
 alertRetryLogRoutes(app);
