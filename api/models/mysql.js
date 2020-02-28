@@ -2,6 +2,7 @@
 
 const mysql = require('mysql');
 
+console.log("IsDeployed: ", process.env.DEPLOYED === "true");
 
 // GCP Production connection configuration
 var connection;

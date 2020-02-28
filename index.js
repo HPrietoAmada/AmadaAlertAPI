@@ -18,6 +18,9 @@ alertRoutes(app);
 var alertResponseRoutes = require('./api/routes/alertResponseRoutes');
 alertResponseRoutes(app);
 
+var alertNotificationTypeRoutes = require('./api/routes/alertNotificationTypeRoutes');
+alertNotificationTypeRoutes(app);
+
 var alertTemplateRoutes = require('./api/routes/alertTemplateRoutes');
 alertTemplateRoutes(app);
 

@@ -19,7 +19,7 @@ var Alert = function (object) {
 	this.created_id 	= object.created_id;
 	this.created_date 	= object.created_date;
 	this.updated_id 	= object.updated_id;
-	this.updated_date 	= object.updated_date;	
+	this.updated_date 	= object.updated_date;
 };
 
 Alert.getById = function (id, result) {
@@ -39,11 +39,10 @@ Alert.getAll = function (result) {
 	mysql.query(
 		"SELECT * FROM alert ORDER BY created_date DESC;"
 		,function (err, res) {
-			if (err) {
+			if (err)
 				result(err, null);
-			} else {
+			else
 				result(null, res);
-			}
 		});
 };
 
